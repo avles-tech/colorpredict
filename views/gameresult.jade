@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    -var data = {};
+    head
+        script.
+            function reloadTable(){
+                
+                $("#results").load("http://127.0.0.1:3000/gameresult/getalldata");
+            }
+
+            function create () {      
+                    
+                    $.ajax({
+                        url: '/gameresult',
+                        type: 'post',
+                        data:{ period : $( "#prefix" ).val() + $( "#period" ).val(),
+                                price : $( "#price" ).val() 
+                            },
+                        success:function(){
+                           //$( "#period" ).val("");
+                           $( "#price" ).val("");
+                            reloadTable();
+                        }
+                    });
+            }
+            
+            $(window).ready(function() {
+                reloadTable();
+                
+            })
+    h1= title
+    
+    table
+            tr 
+                th Prefix
+                th 
+                    input(type="number", id="prefix")
+            tr 
+                th Period
+                th 
+                    input(type="number", id="period")
+            tr
+                th Price
+                th 
+                    input(type="number", id="price")
+            tr
+                th
+                th
+                    button(onclick='create()') Submit
+                th test
+    br
+    br
+    div(id= "results")
+    

@@ -1,0 +1,59 @@
+style.
+    .dotred {
+        height: 20px;
+        width: 20px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .dotgreen {
+        height: 20px;
+        width: 20px;
+        background-color: green;
+        border-radius: 50%;
+        display: inline-block;
+        
+    }
+    th, td {
+        padding: 5px;
+    }
+    th {
+        text-align: left;
+    }
+table(style="width:30%")
+        thead
+        tr 
+            th Period
+            th Price
+            th Color
+            th Predict
+            th result
+        tbody
+        each d, i in data
+            tr
+                td #{d.period}
+                td #{d.price}
+                td
+                    if d.color == "red"
+                        span(class='dotred')
+                    else
+                        span(class='dotgreen')
+                td
+                    if d.tanColor == 'blank'
+                        div
+                    else
+                        if d.tanColor == "red"
+                            span(class='dotred')
+                        else
+                            span(class='dotgreen')
+                td #{d.tan}
+                td
+                    if d.tanColor == 'blank'
+                        div
+                    else
+                        if d.tanColor ==  d.color
+                            div(style="color:green;") PASS
+                        else
+                            div(style="color:red;") FAIL
+                    
+
